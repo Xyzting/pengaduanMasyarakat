@@ -1,5 +1,5 @@
 import express from "express";
-import TanggapanController from "../controller/TanggapanController";
+import TanggapanController from "../controller/TanggapanController.js";
 
 const TanggapanRoute = express.Router()
 

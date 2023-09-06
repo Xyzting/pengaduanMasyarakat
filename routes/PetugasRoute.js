@@ -1,5 +1,5 @@
 import express from "express";
-import PetugasController from "../controller/PetugasController";
+import PetugasController from "../controller/PetugasController.js";
 
 const PetugasRoute = express.Router()
 

@@ -1,10 +1,10 @@
 import express from "express";
 import fileUpload from "express-fileupload";
 import cors from "cors";
-import MasyarakatRoute from "./routes/MasyarakatRoute";
-import PengaduanRoute from "./routes/PengaduanRoute";
-import PetugasRoute from "./routes/PetugasRoute";
-import TanggapanRoute from "./routes/TanggapanRoute";
+import MasyarakatRoute from "./routes/MasyarakatRoute.js";
+import PengaduanRoute from "./routes/PengaduanRoute.js";
+import PetugasRoute from "./routes/PetugasRoute.js";
+import TanggapanRoute from "./routes/TanggapanRoute.js";
 
 const app = express()
 const port = 5000;
