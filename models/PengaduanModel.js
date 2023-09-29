@@ -15,6 +15,8 @@ const Pengaduan = db.define("pengaduan", {
     foto: DataTypes.STRING,
     url: DataTypes.STRING,
     status: DataTypes.STRING,
+},{
+    freezeTableName: true
 })
 
 await Pengaduan.sync();

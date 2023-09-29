@@ -1,11 +1,16 @@
+import Pengaduan from "../models/PengaduanModel.js";
+import Petugas from "../models/PetugasModel.js";
 import Tanggapan from "../models/TanggapanModel.js";
 import Joi from "joi";
 
 class TanggapanController {
 
     async index (req,res) {
-        const data = await Tanggapan.findAll();
-        return res.json(data);
+        const data = await Tanggapan.findAll({include: Pengaduan});
+        return res.json({
+            msg: "success",
+            data: data
+        });
     }
 
     async store (req,res) {
@@ -23,12 +28,16 @@ class TanggapanController {
         if(validatedData.error) return res.json({msg:validatedData.error.details[0].message.replace(/"/g, '')});
 
         try{
-            await Tanggapan.create(data);
+            const response = await Tanggapan.create(data);
+
+            return res.json({
+                msg: "success",
+                data: response
+            });
         }catch(e){
-            return res.json({msg:e.parent.sqlMessage})
+            return res.json({msg:e.message})
         }
 
-        return res.json({msg:"success"});
     }
 
     async update (req,res){
@@ -46,7 +55,12 @@ class TanggapanController {
 
         await Tanggapan.update(validatedData.value,{where:{id_tanggapan:tanggapan.id_tanggapan}});
 
-        return res.json({msg:"success"});
+        const response = await Tanggapan.findOne({where:{ id_tanggapan:req.params.id }});
+
+        return res.json({
+            msg: "success",
+            data: response
+        });
     }
 
     async destroy (req,res) {

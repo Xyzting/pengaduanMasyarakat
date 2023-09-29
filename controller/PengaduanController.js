@@ -14,7 +14,10 @@ class PengaduanController {
 
     async index (req,res) {
         const data = await Pengaduan.findAll();
-        return res.json(data);
+        return res.json({
+            msg: "success",
+            data: data
+        });
     }
 
     async store (req,res){  
@@ -33,9 +36,19 @@ class PengaduanController {
         data.url = image.value.url;
         data.foto = image.value.fileName;
 
-        await Pengaduan.create(data);
+        if(req.body.status !== "proses" && req.body.status !== "selesai" ){
+            return res.json({
+                status: "Bad Request",
+                msg: "status hanya bisa di isi dengan proses dan selesai !!"
+            })
+        }
 
-        return res.json({msg:"success"}); 
+        const response = await Pengaduan.create(data);
+
+        return res.json({
+            msg:"success",
+            data: response
+        }); 
     }
 
     async update (req,res) {
@@ -60,7 +73,12 @@ class PengaduanController {
 
         await Pengaduan.update(data,{where : { id_pengaduan:pengaduan.id_pengaduan }})
 
-        return res.json({msg:"success"});
+        const response = await Pengaduan.findOne({ where: { id_pengaduan:req.params.id } });
+
+        return res.json({
+            msg: "success",
+            data: response
+        });
     }
 
     async destroy (req,res) {

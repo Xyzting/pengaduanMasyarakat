@@ -3,8 +3,8 @@ import PetugasController from "../controller/PetugasController.js";
 
 const PetugasRoute = express.Router()
 
-PetugasRoute.get("/petugas",new PetugasController().index);
-PetugasRoute.post("/petugas",new PetugasController().store);
-PetugasRoute.delete("/petugas/:id/",new PetugasController().destroy);
+PetugasRoute.get("/api/petugas",new PetugasController().index);
+PetugasRoute.post("/api/petugas",new PetugasController().store);
+PetugasRoute.delete("/api/petugas/:id",new PetugasController().destroy);
 
 export default PetugasRoute;

@@ -13,6 +13,8 @@ const Tanggapan = db.define("tanggapan",{
     },
     tgl_tanggapan:DataTypes.DATE,
     tanggapan:DataTypes.TEXT,
+}, {
+    freezeTableName: true
 })
 
 Tanggapan.belongsTo(Pengaduan,{

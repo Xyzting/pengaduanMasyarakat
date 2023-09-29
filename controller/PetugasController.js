@@ -6,13 +6,16 @@ class PetugasController {
 
     async index (req,res) {
         const data = await Petugas.findAll();
-        return res.json(data);
+        return res.json({
+            msg: "success",
+            data: data
+        });
     }
 
     async store (req,res) {
 
         const data = req.body;
-
+        
         const rules = Joi.object({
             nama_petugas:Joi.required(),
             username:Joi.required(),
@@ -26,10 +29,14 @@ class PetugasController {
 
         bcrypt.hash(data.password,10,async (error,hasil) => {
             data.password = hasil
-            await Petugas.create(data);
+            const response = await Petugas.create(data);
+
+            return res.json({
+                msg: "success",
+                data: response
+            });
         });
 
-        return res.json({msg:"success"});
     }
 
     async destroy (req,res) {

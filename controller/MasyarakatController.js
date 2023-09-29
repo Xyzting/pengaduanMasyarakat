@@ -5,7 +5,10 @@ import bcrypt from "bcrypt";
 class MasyarakatController {
     async index(req, res) {
         const data = await Masyarakat.findAll();
-        return res.json(data);
+        return res.json({
+            msg: "success",
+            data: data
+        });
     }
 
     async store(req, res) {
@@ -30,12 +33,16 @@ class MasyarakatController {
 
         try {
             data.password = hasil;
-            await Masyarakat.create(data);
+            const response = await Masyarakat.create(data);
+
+            res.json({ 
+                msg: "success",
+                data: response
+            });
         } catch (e) {
             return res.json({ msg: "Nik tidak unique" })
         }
 
-        return res.json({ msg: "success" });
     }
 
     async update(req, res) {
@@ -54,8 +61,12 @@ class MasyarakatController {
         if (validatedData.error) return res.json({ msg: validatedData.error.details[0].message.replace(/"/g, '') });
 
         await Masyarakat.update(data,{where:{nik:masyarakat.nik}});
+        const response = await Masyarakat.findOne({ where: { nik: req.params.id } })
 
-        return res.json({msg:"success"});
+        return res.json({
+            msg:"success",
+            data: response
+        });
     }
 
     async destroy(req, res) {

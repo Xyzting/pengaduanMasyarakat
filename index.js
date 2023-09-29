@@ -7,7 +7,6 @@ import PetugasRoute from "./routes/PetugasRoute.js";
 import TanggapanRoute from "./routes/TanggapanRoute.js";
 
 const app = express()
-const port = 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -21,4 +20,4 @@ app.use(TanggapanRoute)
 
 app.get("/",(req,res) => res.send("Masih pake api")) 
 
-app.listen(port,() => console.log(`serve berjalan di http://localhost:${port}`))
+app.listen(2222, () => console.log(`hello world`))

@@ -5,9 +5,9 @@ const MasyarakatRoute = express.Router()
 
 MasyarakatRoute.get("/",new MasyarakatController().index); 
 
-MasyarakatRoute.get("/masyarakat",new MasyarakatController().index);
-MasyarakatRoute.post("/masyarakat",new MasyarakatController().store);
-MasyarakatRoute.put("/masyarakat/:id/",new MasyarakatController().update);
-MasyarakatRoute.delete("/masyarakat/:id/",new MasyarakatController().destroy);
+MasyarakatRoute.get("/api/masyarakat",new MasyarakatController().index);
+MasyarakatRoute.post("/api/masyarakat",new MasyarakatController().store);
+MasyarakatRoute.put("/api/masyarakat/:id",new MasyarakatController().update);
+MasyarakatRoute.delete("/api/masyarakat/:id",new MasyarakatController().destroy);
 
 export default MasyarakatRoute;
