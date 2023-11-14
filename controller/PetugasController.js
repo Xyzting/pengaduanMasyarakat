@@ -6,10 +6,7 @@ class PetugasController {
 
     async index (req,res) {
         const data = await Petugas.findAll();
-        return res.json({
-            msg: "success",
-            data: data
-        });
+        return res.json(data);
     }
 
     async store (req,res) {

@@ -36,6 +36,4 @@ Petugas.hasMany(Tanggapan,{
 
 await Tanggapan.sync();
 
-
-
 export default Tanggapan;

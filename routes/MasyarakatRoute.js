@@ -1,13 +1,19 @@
 import express from "express";
-import MasyarakatController from "../controller/MasyarakatController.js";
+import { 
+  getAllMasyarakat,
+  createMasyarakat,
+  deleteMasyarakat,
+  updateMasyarakat,
+} from "../controller/MasyarakatController.js";
+import { authenticateToken } from "../config/Auth.js";
 
 const MasyarakatRoute = express.Router()
 
-MasyarakatRoute.get("/",new MasyarakatController().index); 
+MasyarakatRoute.get("/", getAllMasyarakat); 
 
-MasyarakatRoute.get("/api/masyarakat",new MasyarakatController().index);
-MasyarakatRoute.post("/api/masyarakat",new MasyarakatController().store);
-MasyarakatRoute.put("/api/masyarakat/:id",new MasyarakatController().update);
-MasyarakatRoute.delete("/api/masyarakat/:id",new MasyarakatController().destroy);
+MasyarakatRoute.get("/api/masyarakat", getAllMasyarakat);
+MasyarakatRoute.post("/api/masyarakat", createMasyarakat);
+MasyarakatRoute.put("/api/masyarakat/:id", updateMasyarakat);
+MasyarakatRoute.delete("/api/masyarakat/:id", deleteMasyarakat);
 
 export default MasyarakatRoute;

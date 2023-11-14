@@ -1,11 +1,17 @@
 import express from "express";
-import PengaduanController from "../controller/PengaduanController.js";
+import { 
+  getAllPengaduan,
+  createPengaduan,
+  updatePengaduan,
+  deletePengaduan,
+} from "../controller/PengaduanController.js";
+import { authenticateToken } from "../config/Auth.js";
 
 const PengaduanRoute = express.Router()
 
-PengaduanRoute.get("/api/pengaduan",new PengaduanController().index); 
-PengaduanRoute.post("/api/pengaduan",new PengaduanController().store); 
-PengaduanRoute.put("/api/pengaduan/:id",new PengaduanController().update);
-PengaduanRoute.delete("/api/pengaduan/:id",new PengaduanController().destroy);
+PengaduanRoute.get("/api/pengaduan", getAllPengaduan); 
+PengaduanRoute.post("/api/pengaduan", createPengaduan); 
+PengaduanRoute.put("/api/pengaduan/:id", updatePengaduan);
+PengaduanRoute.delete("/api/pengaduan/:id", deletePengaduan);
 
 export default PengaduanRoute;
